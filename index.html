@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MJStore - Professional Fullstack Roadmap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #f59e0b;
+            --light: #f3f4f6;
+            --dark: #1f2937;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: var(--light);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .tech-item {
+            background: rgba(30, 64, 175, 0.3);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .phase {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .phase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .phase-number {
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+
+        .phase-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .steps {
+            list-style-type: none;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 10px;
+            border-left: 3px solid var(--info);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            background: rgba(15, 23, 42, 0.8);
+            border-left-color: var(--accent);
+        }
+
+        .step-number {
+            min-width: 30px;
+            height: 30px;
+            background: var(--info);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #e2e8f0;
+        }
+
+        .step-desc {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tool {
+            background: rgba(59, 130, 246, 0.2);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .phase-highlight {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .ai-section {
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 40px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .ai-title {
+            color: #10b981;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-ideas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .ai-card {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .ai-card h3 {
+            color: #10b981;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ai-card ul {
+            padding-left: 20px;
+            color: #94a3b8;
+        }
+
+        .ai-card li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .roadmap {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-road"></i> MJStore Fullstack Roadmap</h1>
+            <p class="subtitle">Professional step-by-step guide to build a production-ready e-commerce platform using Django, PostgreSQL, and modern web technologies</p>
+
+            <div class="tech-stack">
+                <div class="tech-item"><i class="fab fa-linux"></i> Linux CLI</div>
+                <div class="tech-item"><i class="fab fa-python"></i> Django</div>
+                <div class="tech-item"><i class="fas fa-database"></i> PostgreSQL</div>
+                <div class="tech-item"><i class="fab fa-html5"></i> HTML/CSS</div>
+                <div class="tech-item"><i class="fab fa-js"></i> JavaScript</div>
+                <div class="tech-item"><i class="fab fa-git-alt"></i> Git/GitHub</div>
+                <div class="tech-item"><i class="fas fa-shield-alt"></i> JWT Auth</div>
+                <div class="tech-item"><i class="fas fa-rocket"></i> Deployment</div>
+            </div>
+        </header>
+
+        <div class="roadmap">
+            <!-- Phase 1 -->
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">1</div>
+                    <h2 class="phase-title">Project Setup & Planning</h2>
+                </div>
+                <ul class="steps">
+                    <li class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Linux Environment Setup</div>
+                            <div class="step-desc">Install Python, pip, virtualenv, VS Code, and required CLI tools</div>
+                            <div class="tools">
+                                <span class="tool">Terminal</span>
+                                <span class="tool">Python 3.10+</span>
+                                <span class="tool">virtualenv</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">GitHub Repository Initialization</div>
+                            <div class="step-desc">Create repo, set up .gitignore, initialize with README.md and LICENSE</div>
+                            <div class="tools">
+                                <span class="tool">git init</span>
+                                <span class="tool">gh repo create</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Project Planning</div>
+                            <div class="step-desc">Define features, user flows, and create ER diagrams for database</div>
+                            <div class="tools">
+                                <span class="tool">Draw.io</span>
+                                <span class="tool">Mermaid.js</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">Django Project Setup</div>
+                            <div class="step-desc">Create project with virtual environment, install dependencies</div>
+                            <div class="tools">
+                                <span class="tool">django-admin</span>
+                                <span class="tool">requirements.txt</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">Environment Configuration</div>
+                            <div class="step-desc">Set up .env file for environment variables and settings.py configuration</div>
+                            <div class="tools">
+                                <span class="tool">python-dotenv</span>
+                                <span class="tool">django-environ</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="phase-highlight">
+                    <i class="fas fa-lightbulb"></i> Use <code>django-admin startproject mjstore</code> to initialize project structure
+                </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">2</div>
+                    <h2 class="phase-title">Database Design & Models</h2>
+                </div>
+                <ul class="steps">
+                    <li class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">PostgreSQL Configuration</div>
+                            <div class="step-desc">Install PostgreSQL, create database, configure Django settings</div>
+                            <div class="tools">
+                                <span class="tool">psql</span>
+                                <span class="tool">createdb</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Core Models Design</div>
+                            <div class="step-desc">Create Product, Category, Customer, Order, and OrderItem models</div>
+                            <div class="tools">
+                                <span class="tool">models.py</span>
+                                <span class="tool">relationships</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Advanced Model Fields</div>
+                            <div class="step-desc">Implement DecimalField for prices, ImageField for products, indexes for optimization</div>
+                            <div class="tools">
+                                <span class="tool">Pillow</span>
+                                <span class="tool">db_index</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">Migrations & Initial Data</div>
+                            <div class="step-desc">Create migrations, apply to database, and load initial fixtures</div>
+                            <div class="tools">
+                                <span class="tool">makemigrations</span>
+                                <span class="tool">migrate</span>
+                                <span class="tool">loaddata</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">Admin Interface Setup</div>
+                            <div class="step-desc">Register models in admin.py, customize admin site with list displays and filters</div>
+                            <div class="tools">
+                                <span class="tool">admin.site.register</span>
+                                <span class="tool">ModelAdmin</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="phase-highlight">
+                    <i class="fas fa-lightbulb"></i> Use <code>python manage.py makemigrations</code> and <code>migrate</code> to update database schema
+                </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">3</div>
+                    <h2 class="phase-title">Authentication & User Management</h2>
+                </div>
+                <ul class="steps">
+                    <li class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Custom User Model</div>
+                            <div class="step-desc">Extend AbstractUser for custom fields (address, phone, etc.)</div>
+                            <div class="tools">
+                                <span class="tool">AUTH_USER_MODEL</span>
+                                <span class="tool">AbstractUser</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Authentication System</div>
+                            <div class="step-desc">Implement login, logout, registration with email verification</div>
+                            <div class="tools">
+                                <span class="tool">django-allauth</span>
+                                <span class="tool">SMTP</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Password Management</div>
+                            <div class="step-desc">Create password reset and change functionality with security validation</div>
+                            <div class="tools">
+                                <span class="tool">PasswordResetView</span>
+                                <span class="tool">django.contrib.auth</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">Role-Based Access Control</div>
+                            <div class="step-desc">Implement groups and permissions for customers, staff, and admins</div>
+                            <div class="tools">
+                                <span class="tool">permissions</span>
+                                <span class="tool">user.groups</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">Profile Management</div>
+                            <div class="step-desc">Create user profile page with edit functionality and order history</div>
+                            <div class="tools">
+                                <span class="tool">Class-based Views</span>
+                                <span class="tool">Forms</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="phase-highlight">
+                    <i class="fas fa-lightbulb"></i> Use <code>django-allauth</code> for comprehensive authentication features
+                </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">4</div>
+                    <h2 class="phase-title">Core Functionality Development</h2>
+                </div>
+                <ul class="steps">
+                    <li class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Product Catalog</div>
+                            <div class="step-desc">Create views for product listing, filtering, searching and detail pages</div>
+                            <div class="tools">
+                                <span class="tool">ListView</span>
+                                <span class="tool">DetailView</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Shopping Cart System</div>
+                            <div class="step-desc">Implement session-based cart functionality with add/remove/update items</div>
+                            <div class="tools">
+                                <span class="tool">django-sessions</span>
+                                <span class="tool">context processors</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Checkout Process</div>
+                            <div class="step-desc">Create multi-step checkout with address selection, payment integration</div>
+                            <div class="tools">
+                                <span class="tool">Stripe API</span>
+                                <span class="tool">FormWizard</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">Order Management</div>
+                            <div class="step-desc">Implement order creation, confirmation emails, and order history</div>
+                            <div class="tools">
+                                <span class="tool">django-celery</span>
+                                <span class="tool">EmailMessage</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">Admin Dashboard</div>
+                            <div class="step-desc">Build custom admin views for order processing and inventory management</div>
+                            <div class="tools">
+                                <span class="tool">django-admin</span>
+                                <span class="tool">Custom Views</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="phase-highlight">
+                    <i class="fas fa-lightbulb"></i> Use Django's class-based views for efficient CRUD operations
+                </div>
+            </div>
+
+            <!-- Phase 5 -->
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">5</div>
+                    <h2 class="phase-title">API Development with DRF</h2>
+                </div>
+                <ul class="steps">
+                    <li class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">DRF Setup & Configuration</div>
+                            <div class="step-desc">Install Django REST Framework, configure settings and authentication</div>
+                            <div class="tools">
+                                <span class="tool">djangorestframework</span>
+                                <span class="tool">REST_FRAMEWORK</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Model Serializers</div>
+                            <div class="step-desc">Create serializers for all core models with validation and relationships</div>
+                            <div class="tools">
+                                <span class="tool">ModelSerializer</span>
+                                <span class="tool">HyperlinkedModelSerializer</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">ViewSets & Routers</div>
+                            <div class="step-desc">Implement ViewSets for CRUD operations and register with DefaultRouter</div>
+                            <div class="tools">
+                                <span class="tool">ModelViewSet</span>
+                                <span class="tool">DefaultRouter</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">API Authentication</div>
+                            <div class="step-desc">Implement JWT authentication for API endpoints with token refresh</div>
+                            <div class="tools">
+                                <span class="tool">djangorestframework-simplejwt</span>
+                                <span class="tool">TokenAuthentication</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">API Documentation</div>
+                            <div class="step-desc">Generate API documentation with Swagger/OpenAPI and DRF Spectacular</div>
+                            <div class="tools">
+                                <span class="tool">drf-spectacular</span>
+                                <span class="tool">Swagger UI</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="phase-highlight">
+                    <i class="fas fa-lightbulb"></i> Use <code>djangorestframework-simplejwt</code> for secure API authentication
+                </div>
+            </div>
+
+            <!-- Phase 6 -->
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">6</div>
+                    <h2 class="phase-title">Frontend Development</h2>
+                </div>
+                <ul class="steps">
+                    <li class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Static Templates</div>
+                            <div class="step-desc">Create base templates with Bootstrap 5 and custom CSS structure</div>
+                            <div class="tools">
+                                <span class="tool">Bootstrap 5</span>
+                                <span class="tool">SASS</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Template Inheritance</div>
+                            <div class="step-desc">Implement Django template inheritance for consistent UI components</div>
+                            <div class="tools">
+                                <span class="tool">{% extends %}</span>
+                                <span class="tool">{% block %}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Dynamic Content</div>
+                            <div class="step-desc">Integrate Django template tags and filters with backend data</div>
+                            <div class="tools">
+                                <span class="tool">{% for %}</span>
+                                <span class="tool">{% if %}</span>
+                                <span class="tool">Custom filters</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">JavaScript Interactivity</div>
+                            <div class="step-desc">Add cart management, live search, and dynamic forms with vanilla JS</div>
+                            <div class="tools">
+                                <span class="tool">Fetch API</span>
+                                <span class="tool">DOM Manipulation</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">Responsive Design</div>
+                            <div class="step-desc">Optimize for all devices with mobile-first approach and testing</div>
+                            <div class="tools">
+                                <span class="tool">Media Queries</span>
+                                <span class="tool">Chrome DevTools</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="phase-highlight">
+                    <i class="fas fa-lightbulb"></i> Use Bootstrap for rapid UI development with custom SASS overrides
+                </div>
+            </div>
+
+            <!-- Phase 7 -->
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">7</div>
+                    <h2 class="phase-title">Testing & Security</h2>
+                </div>
+                <ul class="steps">
+                    <li class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Unit Testing</div>
+                            <div class="step-desc">Write tests for models, views, forms, and API endpoints</div>
+                            <div class="tools">
+                                <span class="tool">TestCase</span>
+                                <span class="tool">APITestCase</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Integration Testing</div>
+                            <div class="step-desc">Test user workflows (registration to checkout) with Selenium</div>
+                            <div class="tools">
+                                <span class="tool">django-selenium</span>
+                                <span class="tool">LiveServerTestCase</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Security Hardening</div>
+                            <div class="step-desc">Implement CSRF protection, XSS prevention, and SQL injection safeguards</div>
+                            <div class="tools">
+                                <span class="tool">django-csp</span>
+                                <span class="tool">SecurityMiddleware</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">Performance Optimization</div>
+                            <div class="step-desc">Add caching, database indexing, and query optimization</div>
+                            <div class="tools">
+                                <span class="tool">django-debug-toolbar</span>
+                                <span class="tool">Redis</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">Logging & Monitoring</div>
+                            <div class="step-desc">Set up logging, error tracking, and performance monitoring</div>
+                            <div class="tools">
+                                <span class="tool">Sentry</span>
+                                <span class="tool">django-logging</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="phase-highlight">
+                    <i class="fas fa-lightbulb"></i> Use <code>django-debug-toolbar</code> to identify performance bottlenecks
+                </div>
+            </div>
+
+            <!-- Phase 8 -->
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">8</div>
+                    <h2 class="phase-title">Deployment & CI/CD</h2>
+                </div>
+                <ul class="steps">
+                    <li class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Production Environment</div>
+                            <div class="step-desc">Configure production settings, environment variables, and security</div>
+                            <div class="tools">
+                                <span class="tool">Gunicorn</span>
+                                <span class="tool">Nginx</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Containerization</div>
+                            <div class="step-desc">Dockerize application with Dockerfile and docker-compose</div>
+                            <div class="tools">
+                                <span class="tool">Docker</span>
+                                <span class="tool">docker-compose</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Cloud Deployment</div>
+                            <div class="step-desc">Deploy to AWS/GCP with managed database and storage services</div>
+                            <div class="tools">
+                                <span class="tool">AWS EC2</span>
+                                <span class="tool">RDS</span>
+                                <span class="tool">S3</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">CI/CD Pipeline</div>
+                            <div class="step-desc">Set up GitHub Actions for automated testing and deployment</div>
+                            <div class="tools">
+                                <span class="tool">GitHub Actions</span>
+                                <span class="tool">CI/CD</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">Monitoring & Maintenance</div>
+                            <div class="step-desc">Implement uptime monitoring, backups, and update strategy</div>
+                            <div class="tools">
+                                <span class="tool">Prometheus</span>
+                                <span class="tool">Grafana</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="phase-highlight">
+                    <i class="fas fa-lightbulb"></i> Use GitHub Actions for automated testing on every push
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-section">
+            <h2 class="ai-title"><i class="fas fa-robot"></i> AI/ML Integration Opportunities</h2>
+            <div class="ai-ideas">
+                <div class="ai-card">
+                    <h3><i class="fas fa-shopping-cart"></i> Product Recommendations</h3>
+                    <ul>
+                        <li>Collaborative filtering based on purchase history</li>
+                        <li>Content-based recommendations using product attributes</li>
+                        <li>Real-time "customers also bought" suggestions</li>
+                    </ul>
+                </div>
+                <div class="ai-card">
+                    <h3><i class="fas fa-comments"></i> Customer Support Chatbot</h3>
+                    <ul>
+                        <li>NLP-powered order status inquiries</li>
+                        <li>FAQ answering with contextual understanding</li>
+                        <li>Escalation to human agents when needed</li>
+                    </ul>
+                </div>
+                <div class="ai-card">
+                    <h3><i class="fas fa-chart-line"></i> Business Intelligence</h3>
+                    <ul>
+                        <li>Sales forecasting with time series analysis</li>
+                        <li>Customer churn prediction models</li>
+                        <li>Personalized marketing campaign optimization</li>
+                    </ul>
+                </div>
+                <div class="ai-card">
+                    <h3><i class="fas fa-search"></i> Enhanced Search</h3>
+                    <ul>
+                        <li>Natural language product search</li>
+                        <li>Visual search using image recognition</li>
+                        <li>Spelling correction and synonym handling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>MJStore Fullstack Roadmap | Created for Professional Django Development | All CLI-Based Workflow</p>
+            <p>Save this file as roadmap.html and open in browser for reference during development</p>
+        </footer>
+    </div>
+</body>
+</html>
